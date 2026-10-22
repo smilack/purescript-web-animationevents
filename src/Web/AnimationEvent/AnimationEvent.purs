@@ -1,6 +1,11 @@
+-- | Implementation of AnimationEvent interface from
+-- | [CSS Animations Level 1](https://www.w3.org/TR/css-animations-1/)
 module Web.AnimationEvent.AnimationEvent
   ( AnimationEvent
+  , animationName
+  , elapsedTime
   , fromEvent
+  , pseudoElement
   , toEvent
   ) where
 
@@ -16,3 +21,7 @@ fromEvent = unsafeReadProtoTagged "AnimationEvent"
 
 toEvent :: AnimationEvent -> Event
 toEvent = unsafeCoerce
+
+foreign import animationName :: AnimationEvent -> String
+foreign import elapsedTime :: AnimationEvent -> Number
+foreign import pseudoElement :: AnimationEvent -> String
